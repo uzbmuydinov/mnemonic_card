@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class AppColors {
   /// #Main Color
   static const Color mainWhiteColor = Color(0xFFFFFFFF);
-  static const Color mainBackgroundColor = Color(0xFFEEEEEE);
+  static const Color mainBackgroundColor = Color(0xFFF7F7F7);
+  static const Color mainblack= Color(0xFF101010);
+
 
   //static const Color mainColorGreen = Color(0xFF54CFA1);
   static const Color mainColorGreen = Color(0xFF107D42);
   static const Color mainColorBlack = Color(0xFF000000);
-  static const Color oldiUchunRang = Color(0xFFE05656);
-  static const Color orqaUchunRang = Color(0xA82F42E5);
 
   /// #Sub Colors
   static const Color colorGrey = Color(0xFFF7F7F9);
@@ -24,7 +24,7 @@ class AppColors {
   static const Color colorTextLightGrey = Color(0xFF717171);
 
   // #fonts
-  static const String asossiyShrift = "Mulish";
+  static const String asossiyShrift = "Ubuntu";
 
   // #font_size
   static const double fontHeaderSize = 28;
@@ -35,13 +35,7 @@ class AppColors {
   static const double cardHeadSize=16;
   static const double cardsimpleSize=12;
 
-  static List<Color> cardFrontColors = [
-    Colors.blueAccent,
-    Colors.deepOrangeAccent,
-    Colors.purpleAccent,
-    Colors.orangeAccent,
-    Colors.teal
-  ];
+
 
 
   // # MainTextStyle

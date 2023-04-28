@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:mnemonic_card/animation_card/animationFlipCardComplate.dart';
-
+import 'package:mnemonic_card/login_page/login_page.dart';
 import 'package:mnemonic_card/service/di_service.dart';
 
+
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,11 +21,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Menmonic card',
-        theme: ThemeData(fontFamily: "Mulish"),
+        theme: ThemeData(fontFamily: "Ubuntu"),
         initialBinding: DIService(),
-
-        home: AllCardsScreen(),
-
+        home: LoginPage(),
         builder: (context, child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
