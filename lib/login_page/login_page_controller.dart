@@ -10,6 +10,8 @@ class LoginPageController extends GetxController {
   TextEditingController passwordController = TextEditingController();
 
 
+
+
   void toggleObscureText() {
     obsecurePassword.toggle();
   }
@@ -46,6 +48,17 @@ class LoginPageController extends GetxController {
     if(initLogin.isNotEmpty&&initPassword.isNotEmpty){
       Get.off(ManageGoogleNavBar());
     } else if(initLogin.isEmpty||initPassword.isEmpty) {
+      Utils.fireToast("Maydonlarni to'g'ri to'ldiring");
+    }
+    }
+
+    void loginButtonFunction(){
+    debugPrint("Button ishlayaptimi");
+      String initLogin=loginController.text.trim().toString();
+      String initPassword=passwordController.text.trim().toString();
+    if (initLogin.isNotEmpty&&initPassword.isNotEmpty){
+      Get.off(ManageGoogleNavBar());
+    }else if(initLogin.isEmpty||initPassword.isEmpty) {
       Utils.fireToast("Maydonlarni to'g'ri to'ldiring");
     }
     }

@@ -88,24 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                     // sign in button
                     FadeInUp(
                       duration: const Duration(seconds: 1),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.r)),
-                            backgroundColor: AppColors.mainblack,
-                            elevation: 0,
-                            fixedSize: Size(300.w, 50.h)),
-                        onPressed: () {
-                          controller.checkField();
-                        },
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                              fontSize: 18.sp,
-                              color: AppColors.mainWhiteColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                      child: LoginButton(),
                     ),
 
                     const SizedBox(

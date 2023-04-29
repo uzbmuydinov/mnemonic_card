@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mnemonic_card/login_page/login_page_controller.dart';
 import 'package:mnemonic_card/registration_page/register_page.dart';
 import 'package:mnemonic_card/service/utils.dart';
 import '../service/constants/app_colors.dart';
 
+void nimadir(){debugPrint("debug!!!!!!!!!!!!!!!!!!");}
 // password field uchun
 class PasswordField extends StatefulWidget {
   final TextEditingController passwordFieldController;
@@ -144,5 +146,27 @@ Widget RegisterTextAndButton() {
             style: TextStyle(color: Colors.blueAccent),
           ))
     ],
+  );
+}
+Widget LoginButton(){
+  return ElevatedButton(
+
+    style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.r)),
+        backgroundColor: AppColors.mainblack,
+        elevation: 0,
+        fixedSize: Size(300.w, 50.h)),
+    onPressed: (){
+
+      Get.put(LoginPageController()).loginButtonFunction();
+    },
+    child: Text(
+      "Login",
+      style: TextStyle(
+          fontSize: 18.sp,
+          color: AppColors.mainWhiteColor,
+          fontWeight: FontWeight.bold),
+    ),
   );
 }
