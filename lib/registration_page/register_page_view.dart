@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mnemonic_card/registration_page/register_page_controller.dart';
 
 import '../service/constants/app_colors.dart';
@@ -113,8 +114,10 @@ Widget choseDateOfBirth(
         children: [
           CupertinoDatePicker(
             dateOrder:DatePickerDateOrder.mdy,
+            minimumYear: 1900,
 
-            minimumDate: DateTime.now(),
+            maximumYear: DateTime.now().year,
+
             mode: CupertinoDatePickerMode.date,
             use24hFormat: true,
             onDateTimeChanged: (DateTime newDate) {
@@ -338,34 +341,131 @@ Widget selectGender(RegisterPageController controller, String value,
 }
 
 // for get phone number
-class PhoneNumberField extends StatelessWidget {
-  final TextEditingController phoneNumberController;
 
-  PhoneNumberField({Key? key, required this.phoneNumberController})
+
+class PhoneNumberField extends StatelessWidget {
+  final RegisterPageController controller;
+  final Color color;
+
+  const PhoneNumberField({required this.controller, required this.color, Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.mainWhiteColor,
-      width: 390.w,
-      height: 55.h,
-      child: TextField(
-        keyboardType: TextInputType.phone,
-        controller: phoneNumberController,
-        decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            prefixIcon: const Icon(
-              CupertinoIcons.phone,
-              size: 25,
-              color: AppColors.mainColorGreen,
-            ),
-            labelStyle: const TextStyle(fontSize: 18),
-            hintText: "Phone number",
-            hintStyle: const TextStyle(fontSize: 18)),
-      ),
-    );
+        height: 60.h,
+        padding: EdgeInsets.symmetric(horizontal: 12.w),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(11.r),
+        ),
+        child: TextField(
+          onChanged: (text) {
+            controller.onChangedTextField(text, context);
+          },
+          controller: controller.phoneNumberController,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              prefixIcon: SizedBox(
+                width: 116.w,
+                child: Row(
+                  children: [
+                    /// Flag
+                    Image.asset(
+                      'assets/images/im_flag_uzb.png',
+                      width: 32.w,
+                      height: 32.h,
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+
+                    /// Prefix Number
+                    Text(
+                      '+998',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        color: AppColors.mainColorBlack,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+
+                    /// Divider
+                    VerticalDivider(
+                      color: const Color(0xFFC4C4C4),
+                      indent: 15.h,
+                      endIndent: 15.h,
+                      thickness: 0.5,
+                    )
+                  ],
+                ),
+              )),
+          inputFormatters: [
+            controller.numberMaskFormat,
+          ],
+          cursorColor: AppColors.colorTextLightGrey,
+          keyboardType: TextInputType.phone,
+          maxLines: 1,
+          textAlignVertical: TextAlignVertical.center,
+          style: const TextStyle(
+              color: AppColors.mainColorBlack, fontWeight: FontWeight.w500),
+        ));
   }
+}
+
+void succefulRegisterDialog({required BuildContext context, required String title, required String body, required Function() confirm}) async {
+  return showDialog<void>(
+
+
+    context: context,
+    barrierDismissible: true, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+
+        actionsPadding: EdgeInsets.zero,
+        backgroundColor: Colors.white,
+        buttonPadding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        title: Text(
+          title,
+          textAlign: TextAlign.center,
+        ),
+        alignment: Alignment.center,
+        content: Container(
+          constraints: BoxConstraints(minWidth: 100.w, maxHeight: 250.h),
+          child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Lottie.asset("assets/lottiefiles/done.json",width: 200.w, height: 200.h,repeat: false, )
+          ),
+        ),
+        actions: [
+          Container(
+            height: 60.h,
+            margin: EdgeInsets.only(top: 1.h),
+            decoration: BoxDecoration(
+                border: Border(
+                    top: BorderSide(color: Colors.grey, width: 0.5.h))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                  onPressed: confirm,
+                  child: Text(
+                    "Ok",
+                    style: TextStyle(fontSize: 19.sp, color: Colors.blue),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      );
+    },
+  );
 }

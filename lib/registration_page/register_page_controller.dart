@@ -1,13 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:mnemonic_card/manage_page/manage_page_googleNavbar.dart';
+import 'package:mnemonic_card/view/is_loading.dart';
 
 class RegisterPageController extends GetxController {
   bool isLoading = false;
   late final int userAge;
   late final int userbirthDay;
   late final int userbirthMonth;
+  String phoneNumber = '+998';
+  int lengthNumber = 0;
+  bool isButtonActive = false;
 
   // for input date
   DateTime initDate = DateTime.now();
@@ -44,6 +52,16 @@ class RegisterPageController extends GetxController {
 
 
 
+  void initTimer() {
+    debugPrint("Ishga tushdi");
+    Timer(const Duration(seconds: 3), () {
+      debugPrint("Timer tugadi");
+      Get.back();
+      Get.off(ManageGoogleNavBar());
+    });
+  }
+
+
   // for show dialog widget
   void showDialog(Widget child, BuildContext context) {
     showCupertinoModalPopup<void>(
@@ -76,4 +94,34 @@ class RegisterPageController extends GetxController {
     selectedGender = newValue ?? selectedGender;
     update();
   }
+
+  void onChangedTextField(String text, BuildContext context) {
+    if (text.length == 11) {
+      phoneNumber = '+998';
+      FocusScope.of(context).unfocus();
+      phoneNumber += text;
+      lengthNumber = 11;
+      phoneNumber = phoneNumber.replaceAll(' ', "");
+      update();
+    }
+  }
+
+  var numberMaskFormat = MaskTextInputFormatter(
+      mask: '## ### ####',
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
+
+  void setLoadingStatus(bool isLoading) {
+    this.isLoading = isLoading;
+    update();
+  }
+
+  Future<void> goMainPage() async {
+    Get.back();
+    progressIndicator(Get.context!);
+    Get.offAll(() => const ManageGoogleNavBar());
+
+  }
+
+
 }

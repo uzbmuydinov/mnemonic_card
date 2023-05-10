@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mnemonic_card/profile_page/user_profile_controller.dart';
 
 import 'package:mnemonic_card/service/constants/app_colors.dart';
 
@@ -12,7 +13,9 @@ class UserFunction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GetBuilder<UserProfileController>(builder: (controller){return Container(
+
+
       width: 1.sw,
       decoration: BoxDecoration(
         color: AppColors.mainWhiteColor,
@@ -73,14 +76,14 @@ class UserFunction extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               onTap: () {
-                // controller.showAlertDialogOnlyOk(
-                //
-                //     title: 'Bildirgi',
-                //     confirm: () {
-                //       Get.back();
-                //     },
-                //     context: context,
-                //     body: 'Kechirasiz, hozircha tillar boshqaruvi menyusi amalda emas. Keyingi talqinlarimizda bu imkoniatni taqdim etamiz.');
+                controller.showAlertDialogOnlyOk(
+
+                    title: 'Bildirgi',
+                    confirm: () {
+                      Get.back();
+                    },
+                    context: context,
+                    body: 'Kechirasiz, hozircha tillar boshqaruvi menyusi amalda emas. Keyingi talqinlarimizda bu imkoniatni taqdim etamiz.');
                 /*Get.to(() => const DirectorReportPage(),
                     transition: Transition.fadeIn,
                     duration: const Duration(milliseconds: 150),
@@ -181,13 +184,13 @@ class UserFunction extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               onTap: () {
-                // controller.showAlertDialog(
-                //     title: 'Chiqish',
-                //     confirm: () {
-                //       controller.logOut();
-                //     },
-                //     context: context,
-                //     body: 'Chiqishni xoxlaysizmi?');
+                controller.showAlertDialog(
+                    title: 'Chiqish',
+                    confirm: () {
+                      controller.logOut();
+                    },
+                    context: context,
+                    body: 'Chiqishni xoxlaysizmi?');
               },
               radius: 1000,
               splashColor: Colors.grey.shade200,
@@ -238,16 +241,16 @@ class UserFunction extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "Ishchilar".tr,
+                      "Obuna".tr,
                       style: TextStyle(
                           fontSize: 18.sp, fontWeight: FontWeight.w600),
                     ),
                     const Spacer(),
                     Image(
                       image:
-                      const AssetImage("assets/images/672774.png"),
-                      width: 26.w,
-                      height: 26.h,
+                      const AssetImage("assets/images/check.png"),
+                      width: 33.w,
+                      height: 33.h,
                     ),
                   ],
                 ),
@@ -257,6 +260,6 @@ class UserFunction extends StatelessWidget {
 
         ],
       ),
-    );
+    );});
   }
 }
