@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mnemonic_card/service/utils.dart';
 import 'package:mnemonic_card/view/app_colors.dart';
 
 class MnemonicCardsWidget extends StatelessWidget {
@@ -35,8 +36,8 @@ class MnemonicCardsWidget extends StatelessWidget {
           child:  Stack(
             children: [
               Positioned(
-                left: 3,
-                top: 5,
+                left: MediaQuery.of(context).size.width*0.37,
+                bottom: 15,
                 child: IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.volume_up),
@@ -65,32 +66,71 @@ class MnemonicCardsWidget extends StatelessWidget {
 
       // rasmlar shu yerda
       back: Center(
-        child: SizedBox(
-          width: 500.h,
-          height: 350.w,
-          child: CachedNetworkImage(
-            imageUrl: pathBackSideImage,
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+        child: Container(
+          height: MediaQuery.of(context).size.height*0.5,
+          child: Column(
+            children: [
+              SizedBox(
+                width: 500.h,
+                height: 350.w,
+                child: CachedNetworkImage(
+                  imageUrl: pathBackSideImage,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  placeholder: (context, url) => Center(
+                    child: Container(
+                      width: 500.h,
+                      height: 280.w,
+                      child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Lottie.asset(
+                              "assets/lottiefiles/download-from-cloud.json")),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
-            ),
-            placeholder: (context, url) => Center(
-              child: Container(
-                width: 500.h,
-                height: 280.w,
-                child: SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Lottie.asset(
-                        "assets/lottiefiles/download-from-cloud.json")),
-              ),
-            ),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+             // SizedBox(height: 20,),
+             /* ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    side: BorderSide(color: Colors.black38, width: 0.5),
+                    shape:
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
+                    backgroundColor: AppColors.mainWhiteColor,
+                    foregroundColor: Colors.black38,
+                    elevation: 0,
+                    fixedSize: Size(290.w, 50.h)),
+                onPressed: () {
+                  Utils.fireToast("Bu funksiya keyingi talqinda ishga tushadi");
+                },
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                          child: Image.asset("assets/images/google_icon.png"),
+                          maxRadius: 13,
+                          backgroundColor: Colors.transparent),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        "Sign with google",
+                        style: TextStyle(color: Colors.black),
+                      )
+                    ],
+                  ),
+                ),
+              )*/
+            ],
           ),
         ),
       ),

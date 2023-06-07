@@ -62,7 +62,7 @@ margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Container(
                 child: VerticalCardPager(
                   textStyle: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.white, fontWeight: FontWeight.bold, fontSize: 10),
                   titles: titles,
                   images: images,
                   onPageChanged: (page) {},
