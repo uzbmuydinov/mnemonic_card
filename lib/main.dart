@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mnemonic_card/home_page/home_two.dart';
+import 'package:mnemonic_card/login_page/login_page.dart';
 import 'package:mnemonic_card/service/di_service.dart';
 import 'package:mnemonic_card/splash_page/splash_page.dart';
 
@@ -20,10 +22,10 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Menmonic card',
+        title: 'MnemoUz',
         theme: ThemeData(fontFamily: "Ubuntu"),
         initialBinding: DIService(),
-        home: SplashPage(),
+        home: LoginPage(),
         builder: (context, child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),

@@ -11,10 +11,15 @@ import 'package:mnemonic_card/view/app_colors.dart';
 
 class MnemonicCardsWidget extends StatelessWidget {
   final String frontText;
+  final String backText;
+  final String englishWord;
+  final String transcription;
+  final String association;
+
   String pathBackSideImage;
 
   MnemonicCardsWidget(
-      {Key? key, required this.frontText, required this.pathBackSideImage})
+      {Key? key, required this.frontText, required this.backText,  required this.pathBackSideImage, required this.englishWord, required this.transcription, required this.association, })
       : super(key: key);
 
   int color_id = Random().nextInt(AppColors.cardFrontColors.length);
@@ -29,23 +34,13 @@ class MnemonicCardsWidget extends StatelessWidget {
       front: Center(
         child: Container(
           width: 500.h,
-          height: 350.w,
+          height: 420.w,
           decoration: BoxDecoration(
               color: AppColors.cardFrontColors[color_id],
               borderRadius: BorderRadius.circular(10)),
           child:  Stack(
             children: [
-              Positioned(
-                left: MediaQuery.of(context).size.width*0.37,
-                bottom: 15,
-                child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.volume_up),
-                    color: Colors.white,
-                    iconSize: 40,
-                    splashColor: Colors.white,
-                    hoverColor: Colors.orangeAccent),
-              ),
+
               Center(
                 child: Text(
                   frontText,
@@ -70,66 +65,128 @@ class MnemonicCardsWidget extends StatelessWidget {
           height: MediaQuery.of(context).size.height*0.5,
           child: Column(
             children: [
-              SizedBox(
-                width: 500.h,
-                height: 350.w,
-                child: CachedNetworkImage(
-                  imageUrl: pathBackSideImage,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  placeholder: (context, url) => Center(
+              Stack(
+                children: [
+                  Center(
                     child: Container(
                       width: 500.h,
-                      height: 280.w,
-                      child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: Lottie.asset(
-                              "assets/lottiefiles/download-from-cloud.json")),
+                      height: 350.w,
+                      decoration: BoxDecoration(
+                          color: AppColors.cardFrontColors[color_id],
+                          borderRadius: BorderRadius.circular(10)),
+                      child:  Stack(
+                        children: [
+                       /*   Positioned(
+                            left: MediaQuery.of(context).size.width*0.37,
+                            bottom: 15,
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.volume_up),
+                                color: Colors.white,
+                                iconSize: 40,
+                                splashColor: Colors.white,
+                                hoverColor: Colors.orangeAccent),
+                          ),*/
+                          Center(
+                            child: Text(
+                              frontText,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              maxLines: 5,
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  height: 1.3),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
-              ),
-             // SizedBox(height: 20,),
-             /* ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    side: BorderSide(color: Colors.black38, width: 0.5),
-                    shape:
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
-                    backgroundColor: AppColors.mainWhiteColor,
-                    foregroundColor: Colors.black38,
-                    elevation: 0,
-                    fixedSize: Size(290.w, 50.h)),
-                onPressed: () {
-                  Utils.fireToast("Bu funksiya keyingi talqinda ishga tushadi");
-                },
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                          child: Image.asset("assets/images/google_icon.png"),
-                          maxRadius: 13,
-                          backgroundColor: Colors.transparent),
-                      const SizedBox(
-                        width: 10,
+                  Container(
+
+                    width: 500.h,
+                    height: 420.w,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15)
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                        children: [
+
+                          RichText(
+                            text: TextSpan(
+                              style: DefaultTextStyle.of(context).style,
+                              children: [
+                                TextSpan(
+                                  text: englishWord,
+                                  style: TextStyle(color: Colors.purple,fontSize: 21,fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(
+                                  text: " - [ ",
+                                  style: TextStyle(color: Colors.black,fontSize: 21),
+                                ),
+                                TextSpan(
+                                  text: transcription,
+                                  style: TextStyle(color: Colors.black, fontSize: 20,fontFamily: "PTSans"),
+                                ),
+                                TextSpan(
+                                  text: " ] - ",
+                                  style: TextStyle(color: Colors.black,fontSize: 21,),
+                                ),
+                                TextSpan(
+                                  text: association,
+                                  style: TextStyle(color: Colors.purple, fontSize: 21,fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 7,),
+                          // rasm uchun container
+                          Container(
+
+                            height: 260,
+                            width: 350,
+                            child: CachedNetworkImage(
+                              imageUrl: pathBackSideImage,
+                              imageBuilder: (context, imageProvider) => Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              placeholder: (context, url) => Center(
+                                child: Container(
+                                  width: 500.h,
+                                  height: 280.w,
+                                  child: SizedBox(
+                                      height: 100,
+                                      width: 100,
+                                      child: Lottie.asset(
+                                          "assets/lottiefiles/download-from-cloud.json")),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Icon(Icons.error),
+                            ),
+                          ),
+                          SizedBox(height: 7,),
+                          Text(backText, style: TextStyle(fontSize: 20),textAlign: TextAlign.center),
+
+                        ],
                       ),
-                      const Text(
-                        "Sign with google",
-                        style: TextStyle(color: Colors.black),
-                      )
-                    ],
+                    ),
                   ),
-                ),
-              )*/
+                ],
+              ),
+
             ],
           ),
         ),
@@ -138,3 +195,4 @@ class MnemonicCardsWidget extends StatelessWidget {
     );
   }
 }
+

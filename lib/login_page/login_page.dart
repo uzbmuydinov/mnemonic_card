@@ -94,6 +94,14 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 15,
                     ),
+                    FadeInUp(
+                      duration: const Duration(seconds: 1),
+                      child: GuestButton(),
+                    ),
+
+                    const SizedBox(
+                      height: 15,
+                    ),
                     // Sign with Google button
                     FadeInUp(
                         duration: const Duration(seconds: 1),

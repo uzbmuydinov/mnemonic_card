@@ -12,65 +12,103 @@ class AllCardsScreen extends StatefulWidget {
   State<AllCardsScreen> createState() => _AllCardsScreenState();
 }
 
-
 class _AllCardsScreenState extends State<AllCardsScreen> {
   final CardSwiperController controller = CardSwiperController();
-  final FlutterTts flutterTts=FlutterTts();
+  final FlutterTts flutterTts = FlutterTts();
 
 // for speak text
 
-  void speak(String text) async{
+  void speak(String text) async {
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(0.5);
     await flutterTts.setSpeechRate(0.8);
     await flutterTts.speak(text);
-
   }
-
 
   List<Widget> kartalar = [
     // a dish
     MnemonicCardsWidget(
-      frontText: "VAY, NAQADAR UZUN WAY(YO'L)MAN, DEDI WAY (YO'L)",
+      backText: "VAY, NAQADAR UZUN WAY(YO'L)MAN, DEDI WAY (YO'L)",
+      frontText: "Way - Yo'l",
       pathBackSideImage: DriveImageSource.wayImage,
+      englishWord: 'Way',
+      transcription: 'weɪ',
+      association: 'Vay!',
     ),
     // galosh
     MnemonicCardsWidget(
-      frontText: "HAR YEAR (YIL) YER QUYOSH ATROFINI BIR MARTA AYLANIB CHIQADI",
+      backText: "HAR YEAR (YIL) YER QUYOSH ATROFINI BIR MARTA AYLANIB CHIQADI",
+      frontText: "Year - Yil",
       pathBackSideImage: DriveImageSource.yearImage,
+      englishWord: 'Year',
+      transcription: 'jɪə',
+      association: 'Yil',
     ),
-
-
 
     // candy
     MnemonicCardsWidget(
-      frontText: "APPLE (OLMA) G'OLIB BO'LISHNI EPLADI!",
+      backText: "APPLE (OLMA) G'OLIB BO'LISHNI EPLADI!",
+      frontText: "Apple - Olma",
       pathBackSideImage: DriveImageSource.appleImage,
+      englishWord: 'Apple',
+      transcription: 'æpl',
+      association: 'Epla',
     ),
 
-    // Pistacchio
-
     MnemonicCardsWidget(
-      frontText: "ONA BALL(KOPTOK) BOLA BALL(KOPTOK)GA \"BO'LAQOL!\" DEDI",
+      backText: "ONA BALL(KOPTOK) BOLA BALL(KOPTOK)GA \"BO'LAQOL!\" DEDI",
+      frontText: "Ball - koptok",
       pathBackSideImage: DriveImageSource.ballImage,
+      englishWord: 'Ball',
+      transcription: 'bɔːl',
+      association: 'Bo\'l',
     ),
     // drill
     MnemonicCardsWidget(
-      frontText: '"MEN MAN(ERKAK) MAN", DEDI MANSUR.',
+      backText: 'MEN MAN(ERKAK) MAN", DEDI MANSUR.',
+      frontText: 'Men - Erkak',
       pathBackSideImage: DriveImageSource.manImage,
+      englishWord: 'Men',
+      association: 'Man',
+      transcription: 'men',
     ),
-    MnemonicCardsWidget(frontText: "Scholl", pathBackSideImage: DriveImageSource.schoolImage),
-    MnemonicCardsWidget(frontText: "Car", pathBackSideImage: DriveImageSource.carImage),
-    MnemonicCardsWidget(frontText: "Day", pathBackSideImage: DriveImageSource.dayImage),
-    MnemonicCardsWidget(frontText: "Thing", pathBackSideImage: DriveImageSource.thingImage),
-    MnemonicCardsWidget(frontText: "Women", pathBackSideImage: DriveImageSource.womenImage)
+
+    MnemonicCardsWidget(
+        backText: "BU MASHINANI QULOG`I KAR",
+        frontText: "Car - Mashina",
+        pathBackSideImage: DriveImageSource.carImage,
+        englishWord: 'Car',
+        transcription: 'kɑː',
+        association: 'Qulog\'i kar'),
+    MnemonicCardsWidget(
+        pathBackSideImage: DriveImageSource.dayImage,
+        backText: 'AYTING, OYI, NIMA DEY? \nINGLIZCHA "DAY" DE',
+        frontText: "Day - kun",
+        englishWord: 'Day',
+        transcription: 'deɪ',
+        association: 'De'),
+    MnemonicCardsWidget(
+      backText: "SALIMJONNI NARSASI (THING) YERGA TUSHIB SINDI",
+      frontText: "Thing - narsa",
+      pathBackSideImage: DriveImageSource.thingImage,
+      englishWord: 'Thing',
+      transcription: 'θɪŋ',
+      association: 'Sinmoq',
+    ),
+    MnemonicCardsWidget(
+      backText: 'WOMAN (AYOL) KO`ZGUGA QARAB, "VOY MAN!" DEDI',
+      frontText: "Women -ayol",
+      pathBackSideImage: DriveImageSource.womenImage,
+      englishWord: 'Woman',
+      transcription: "ˈwʊmən",
+      association: 'Voy man!',
+    )
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      backgroundColor: AppColors.mainBackgroundColor, 
+      backgroundColor: AppColors.mainBackgroundColor,
       body: SafeArea(
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 1,
@@ -83,14 +121,12 @@ class _AllCardsScreenState extends State<AllCardsScreen> {
                   cards: kartalar,
                   onSwipe: _swipe,
                   padding: const EdgeInsets.all(24.0),
-                  
                 ),
               ),
             ],
           ),
         ),
       ),
-
     );
   }
 

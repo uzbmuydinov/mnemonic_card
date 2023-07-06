@@ -2,7 +2,7 @@
     package="com.uzbmuydinov.mnemonic_card">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="mnemonic_card"
+        android:label="MnemoUz"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:mnemonic_card/home_page/home_page.dart';
 import 'package:mnemonic_card/home_page/home_page_controller.dart';
+import 'package:mnemonic_card/home_page/home_two.dart';
 import 'package:mnemonic_card/manage_page/manage_page_googleNavbar_controller.dart';
 import 'package:mnemonic_card/profile_page/user_profile_page.dart';
 import 'package:mnemonic_card/result_page/result_page.dart';
@@ -59,7 +60,7 @@ class _ManageGoogleNavBarState extends State<ManageGoogleNavBar> {
 
 
   static const List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+    HomeTwo(),
     ResultPage(),
     UserAccountPage(),
 
