@@ -19,10 +19,12 @@ class _AllCardsScreenState extends State<AllCardsScreen> {
 // for speak text
 
   void speak(String text) async {
+
     await flutterTts.setLanguage("en-US");
-    await flutterTts.setPitch(0.5);
-    await flutterTts.setSpeechRate(0.8);
+    await flutterTts.setPitch(0.1);
+    await flutterTts.setSpeechRate(0.2);
     await flutterTts.speak(text);
+    debugPrint("Gapirdimi");
   }
 
   List<Widget> kartalar = [
@@ -126,6 +128,12 @@ class _AllCardsScreenState extends State<AllCardsScreen> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+      //    speak();
+        },
+        child: Icon(Icons.volume_down),
       ),
     );
   }

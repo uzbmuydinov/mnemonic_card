@@ -37,7 +37,7 @@ class MnemonicCardsWidget extends StatelessWidget {
           height: 420.w,
           decoration: BoxDecoration(
               color: AppColors.cardFrontColors[color_id],
-              borderRadius: BorderRadius.circular(10)),
+              borderRadius: BorderRadius.circular(15)),
           child:  Stack(
             children: [
 
@@ -73,7 +73,7 @@ class MnemonicCardsWidget extends StatelessWidget {
                       height: 350.w,
                       decoration: BoxDecoration(
                           color: AppColors.cardFrontColors[color_id],
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(15)),
                       child:  Stack(
                         children: [
                        /*   Positioned(
